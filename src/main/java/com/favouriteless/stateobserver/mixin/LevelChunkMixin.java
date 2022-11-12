@@ -14,8 +14,9 @@ public class LevelChunkMixin {
 
 	@Inject(method="setBlockState", at=@At(value="HEAD"))
 	public void onStateChange(BlockPos pos, BlockState state, boolean isMoving, CallbackInfoReturnable<BlockState> cir) {
-		if(!((LevelChunk)(Object)this).getLevel().isClientSide) {
-			StateObserverManager.notifyChange(pos, ((LevelChunk)(Object)this).getBlockState(pos), state);
+		LevelChunk levelChunk = ((LevelChunk)(Object)this);
+		if(!levelChunk.getLevel().isClientSide) {
+			StateObserverManager.notifyChange(levelChunk.getLevel(), pos, levelChunk.getBlockState(pos), state);
 		}
 	}
 

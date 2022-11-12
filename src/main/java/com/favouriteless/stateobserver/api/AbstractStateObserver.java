@@ -20,18 +20,38 @@ public abstract class AbstractStateObserver {
 		this.radiusY = radiusY;
 		this.radiusZ = radiusZ;
 
-		if(radiusX > 0)
-			throw new IllegalStateException("StateObserver's X radius must be greater than Zero");
-		if(radiusY > 0)
-			throw new IllegalStateException("StateObserver's X radius must be greater than Zero");
-		if(radiusZ > 0)
-			throw new IllegalStateException("StateObserver's X radius must be greater than Zero");
+		if(radiusX <= 0)
+			throw new IllegalStateException("StateObserverMod's X radius must be greater than Zero");
+		if(radiusY <= 0)
+			throw new IllegalStateException("StateObserverMod's Y radius must be greater than Zero");
+		if(radiusZ <= 0)
+			throw new IllegalStateException("StateObserverMod's Z radius must be greater than Zero");
 	}
 
 	/**
-	 * Override this to add behaviour which needs to read state changes
+	 * Called when observer is handling state changes
 	 */
-	public abstract void handleChanges();
+	protected abstract void handleChanges();
+
+	/**
+	 * Called when the observer is first created.
+	 */
+	public abstract void onInit();
+
+	/**
+	 * Called when observer is removed.
+	 */
+	public abstract void onRemove();
+
+	/**
+	 * Call this when your observer needs to start resolving state changes.
+	 */
+	public void checkChanges() {
+		if(!changeSet.getChanges().isEmpty()) {
+			handleChanges();
+			changeSet.clear();
+		}
+	}
 
 	/**
 	 * @param pos
@@ -43,7 +63,7 @@ public abstract class AbstractStateObserver {
 				&& pos.getZ() >= this.pos.getZ()-radiusZ && pos.getZ() <= this.pos.getZ()+radiusZ;
 	}
 
-	public StateChangeSet getChangeSet() {
+	public StateChangeSet getStateChangeSet() {
 		return changeSet;
 	}
 

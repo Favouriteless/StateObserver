@@ -3,31 +3,32 @@ package com.favouriteless.stateobserver.api;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StateChangeSet {
 
-	private final Map<BlockPos, StateChange> changes = new HashMap<>();
+	private final List<StateChange> changes = new ArrayList<>();
 
 	public void change(BlockPos pos, BlockState oldState, BlockState newState) {
-		if(changes.containsKey(pos)) {
-			StateChange change = changes.get(pos);
-			if(!change.newState.equals(newState)) {
-				changes.put(pos, new StateChange(change.oldState, newState)); // Update old change if already present
+		for(int i = 0; i < changes.size(); i++) {
+			StateChange change = changes.get(i);
+			if(change.pos == pos) {
+				changes.set(i, new StateChange(pos, change.oldState, newState));
+				return;
 			}
 		}
-		else
-			changes.put(pos, new StateChange(oldState, newState));
+		changes.add(new StateChange(pos, oldState, newState));
 	}
 
 	public void clear() {
 		changes.clear();
 	}
 
-	public Map<BlockPos, StateChange> getChanges() {
+	public List<StateChange> getChanges() {
 		return changes;
 	}
 
-	public record StateChange(BlockState oldState, BlockState newState) { }
+
+	public record StateChange(BlockPos pos, BlockState oldState, BlockState newState) {}
 }
