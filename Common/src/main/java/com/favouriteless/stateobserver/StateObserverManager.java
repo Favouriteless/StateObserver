@@ -31,6 +31,17 @@ public class StateObserverManager {
 		}
 	}
 
+	@SuppressWarnings("unchecked") // This is an "unchecked" cast-- class is checked instead.
+	public static <T extends StateObserver> T getObserver(Level level, BlockPos pos, Class<T> clazz) {
+		for(StateObserver observer : OBSERVERS) {
+			if(observer.getClass() == clazz) {
+				if(observer.getLevel() == level && observer.getPos().equals(pos))
+					return (T)observer;
+			}
+		}
+		return null;
+	}
+
 	public static void reset() {
 		OBSERVERS.clear();
 	}
