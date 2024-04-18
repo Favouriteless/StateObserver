@@ -21,3 +21,7 @@ build
 # other
 eclipse
 run
+.idea/scopes/Fabric_sources.xml
+/.idea
+.idea/scopes/Forge_sources.xml
+.idea/scopes/Fabric_sources.xml
