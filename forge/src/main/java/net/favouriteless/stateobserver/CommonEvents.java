@@ -1,5 +1,7 @@
-package favouriteless.stateobserver;
+package net.favouriteless.stateobserver;
 
+import net.favouriteless.stateobserver.StateObserverManagerImpl;
+import net.favouriteless.stateobserver.StateObserverMod;
 import net.minecraftforge.event.server.ServerStoppedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;

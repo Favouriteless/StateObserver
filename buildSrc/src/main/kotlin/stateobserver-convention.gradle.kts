@@ -87,6 +87,17 @@ tasks.withType<GenerateModuleMetadata>().configureEach {
 
 publishing {
     repositories {
-        mavenLocal()
+        if (System.getenv("FAVOURITELESS_MAVEN_USER") == null && System.getenv("FAVOURITELESS_MAVEN_PASS") == null) {
+            mavenLocal()
+        }
+        else maven {
+            name = "FavouritelessReleases"
+            url = uri("https://maven.favouriteless.net/releases")
+
+            credentials {
+                username = System.getenv("FAVOURITELESS_MAVEN_USER")
+                password = System.getenv("FAVOURITELESS_MAVEN_PASS")
+            }
+        }
     }
 }

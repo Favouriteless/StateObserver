@@ -1,7 +1,8 @@
-package favouriteless.stateobserver;
+package net.favouriteless.stateobserver;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.favouriteless.stateobserver.StateObserverManagerImpl;
 
 public class StateObserverFabric implements ModInitializer {
     
