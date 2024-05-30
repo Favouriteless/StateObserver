@@ -1,6 +1,6 @@
 [versions]
 # Enchanted
-    stateobserver = "1.4.1"
+    stateobserver = "1.4.2"
 
 # General Dependencies
     minecraft-range = "[1.20.1,)"
