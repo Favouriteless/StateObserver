@@ -3,32 +3,38 @@ package favouriteless.stateobserver.api;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
-public class StateChangeSet {
+/**
+ * Represents a set of changes made within a {@link StateObserver}'s observed area.
+ */
+public interface StateChangeSet {
 
-	private final List<StateChange> changes = new ArrayList<>();
+    /**
+     * @return A {@link Collection<StateChange>} of all changes within this set.
+     */
+    Collection<StateChange> getChanges();
 
-	public void change(BlockPos pos, BlockState oldState, BlockState newState) {
-		for(int i = 0; i < changes.size(); i++) {
-			StateChange change = changes.get(i);
-			if(change.pos == pos) {
-				changes.set(i, new StateChange(pos, change.oldState, newState));
-				return;
-			}
-		}
-		changes.add(new StateChange(pos, oldState, newState));
-	}
+    /**
+     * Add a new change to this {@link StateChangeSet}.
+     *
+     * @param pos The {@link BlockPos} of the change.
+     * @param oldState The {@link BlockState} before the change.
+     * @param newState The {@link BlockState} after the change.
+     */
+    void change(BlockPos pos, BlockState oldState, BlockState newState);
 
-	public void clear() {
-		changes.clear();
-	}
+    /**
+     * Discard the changes in this set.
+     */
+    void clear();
 
-	public List<StateChange> getChanges() {
-		return changes;
-	}
-
-
-	public record StateChange(BlockPos pos, BlockState oldState, BlockState newState) {}
+    /**
+     * Represents a change in BlockState at a position.
+     *
+     * @param pos The {@link BlockPos} of the change.
+     * @param oldState The {@link BlockState} before the change.
+     * @param newState The {@link BlockState} after the change.
+     */
+    record StateChange(BlockPos pos, BlockState oldState, BlockState newState) {}
 }

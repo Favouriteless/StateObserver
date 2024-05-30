@@ -1,6 +1,6 @@
 package favouriteless.stateobserver.mixin;
 
-import favouriteless.stateobserver.StateObserverManager;
+import favouriteless.stateobserver.StateObserverManagerImpl;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
@@ -16,7 +16,7 @@ public class LevelChunkMixin {
 	public void onStateChange(BlockPos pos, BlockState state, boolean isMoving, CallbackInfoReturnable<BlockState> cir) {
 		LevelChunk levelChunk = (LevelChunk)(Object)this;
 		if(!levelChunk.getLevel().isClientSide)
-			StateObserverManager.notifyChange(levelChunk.getLevel(), pos, levelChunk.getBlockState(pos), state);
+			StateObserverManagerImpl.INSTANCE.notifyChange(levelChunk.getLevel(), pos, levelChunk.getBlockState(pos), state);
 	}
 
 }

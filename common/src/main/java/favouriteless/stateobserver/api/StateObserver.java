@@ -1,11 +1,15 @@
 package favouriteless.stateobserver.api;
 
+import favouriteless.stateobserver.StateChangeSetImpl;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 
+/**
+ * Base class for all State Observers.
+ */
 public abstract class StateObserver {
 
-	private final StateChangeSet changeSet = new StateChangeSet();
+	private final StateChangeSet changeSet = new StateChangeSetImpl();
 
 	private final Level level;
 	private final BlockPos pos;
@@ -29,7 +33,8 @@ public abstract class StateObserver {
 	}
 
 	/**
-	 * Called when observer is handling state changes
+	 * Called by {@link #checkChanges()} when there are changes available. Use this to handle the changes before
+	 * they get discarded.
 	 */
 	protected abstract void handleChanges();
 
@@ -44,7 +49,7 @@ public abstract class StateObserver {
 	public abstract void onRemove();
 
 	/**
-	 * Call this when your observer needs to start resolving state changes.
+	 * Check if there are any changes available, if so, call {@link #handleChanges()}
 	 */
 	public void checkChanges() {
 		if(!changeSet.getChanges().isEmpty()) {
@@ -53,17 +58,19 @@ public abstract class StateObserver {
 		}
 	}
 
+	public StateChangeSet getChangeSet() {
+		return changeSet;
+	}
+
+	// --------------------------------------------- NON-API METHODS BELOW ---------------------------------------------
+
 	/**
-	 * @return True if pos is within this observer's bounds
+	 * @return true if pos is within this observer's bounds, otherwise false.
 	 */
 	public boolean isWithinBounds(BlockPos pos) {
 		return pos.getX() >= this.pos.getX()-radiusX && pos.getX() <= this.pos.getX()+radiusX
 				&& pos.getY() >= this.pos.getY()-radiusY && pos.getY() <= this.pos.getY()+radiusY
 				&& pos.getZ() >= this.pos.getZ()-radiusZ && pos.getZ() <= this.pos.getZ()+radiusZ;
-	}
-
-	public StateChangeSet getStateChangeSet() {
-		return changeSet;
 	}
 
 	public Level getLevel() {

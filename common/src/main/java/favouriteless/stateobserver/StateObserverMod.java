@@ -8,5 +8,4 @@ public class StateObserverMod {
     public static final String MOD_ID = "stateobserver";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-
 }

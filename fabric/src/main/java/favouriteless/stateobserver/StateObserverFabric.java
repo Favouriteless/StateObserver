@@ -7,7 +7,7 @@ public class StateObserverFabric implements ModInitializer {
     
     @Override
     public void onInitialize() {
-        ServerLifecycleEvents.SERVER_STOPPING.register((server -> StateObserverManager.reset())); // Make sure to clear Observers when the server stops.
+        ServerLifecycleEvents.SERVER_STOPPING.register((server -> StateObserverManagerImpl.INSTANCE.reset())); // Make sure to clear Observers when the server stops.
     }
 
 }

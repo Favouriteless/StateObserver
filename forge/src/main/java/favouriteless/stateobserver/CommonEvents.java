@@ -1,7 +1,5 @@
 package favouriteless.stateobserver;
 
-import favouriteless.stateobserver.StateObserverManager;
-import favouriteless.stateobserver.StateObserverMod;
 import net.minecraftforge.event.server.ServerStoppedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -12,7 +10,7 @@ public class CommonEvents {
 
 	@SubscribeEvent
 	public static void onServerStopping(ServerStoppedEvent event) {
-		StateObserverManager.reset(); // Make sure to clear Observers when the server stops.
+		StateObserverManagerImpl.INSTANCE.reset(); // Make sure to clear Observers when the server stops.
 	}
 
 }
