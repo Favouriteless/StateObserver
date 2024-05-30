@@ -1,7 +1,7 @@
-package favouriteless.stateobserver;
+package net.favouriteless.stateobserver;
 
-import favouriteless.stateobserver.api.StateObserver;
-import favouriteless.stateobserver.api.StateObserverManager;
+import net.favouriteless.stateobserver.api.StateObserver;
+import net.favouriteless.stateobserver.api.StateObserverManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;

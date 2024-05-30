@@ -1,6 +1,6 @@
-package favouriteless.stateobserver.mixin;
+package net.favouriteless.stateobserver.mixin;
 
-import favouriteless.stateobserver.StateObserverManagerImpl;
+import net.favouriteless.stateobserver.StateObserverManagerImpl;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;

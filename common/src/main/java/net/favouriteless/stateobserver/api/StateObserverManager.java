@@ -1,6 +1,6 @@
-package favouriteless.stateobserver.api;
+package net.favouriteless.stateobserver.api;
 
-import favouriteless.stateobserver.StateObserverManagerImpl;
+import net.favouriteless.stateobserver.StateObserverManagerImpl;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
@@ -14,7 +14,7 @@ public interface StateObserverManager {
     /**
      * @return The current {@link StateObserverManager} instance.
      */
-    default StateObserverManager get() {
+    static StateObserverManager get() {
         return StateObserverManagerImpl.INSTANCE;
     }
 

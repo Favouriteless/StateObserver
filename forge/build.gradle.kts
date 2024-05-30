@@ -131,7 +131,7 @@ modrinth {
     versionNumber.set(project.version.toString())
     uploadFile.set(tasks.jarJar)
 
-    loaders.set(listOf("forge"))
+    loaders.set(listOf("forge", "neoforge"))
     gameVersions.set(listOf(minecraft_version))
 
     debugMode = true

@@ -1,6 +1,6 @@
-package favouriteless.stateobserver.api;
+package net.favouriteless.stateobserver.api;
 
-import favouriteless.stateobserver.StateChangeSetImpl;
+import net.favouriteless.stateobserver.StateChangeSetImpl;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 
