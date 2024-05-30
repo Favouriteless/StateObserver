@@ -24,7 +24,7 @@ repositories {
 Then, add StateObserver to the dependencies block in your `build.gradle` file (replace forge with the loader).
 ```groovy
 dependencies {
-	modImplementation "net.favouriteles.stateobserver:stateobserver-forge-${minecraft_version}:${stateobserver_version}"
+	implementation "net.favouriteless.stateobserver:stateobserver-forge-${minecraft_version}:${stateobserver_version}"
 }
 ```
 Lastly, add a `stateobserver_version` property to your `gradle.properties` file. The latest release versions for StateObserver can be found on [CurseForge](https://www.curseforge.com/minecraft/mc-mods/stateobserver) and [Modrinth](https://modrinth.com/mod/stateobserver).
