@@ -1,0 +1,30 @@
+modLoader = "javafml"
+loaderVersion = "${neoforge_loader_range}"
+license = "MIT"
+
+
+[[mods]]
+    modId = "stateobserver"
+    version = "${version}"
+    displayName = "StateObserver"
+    displayURL= "https://github.com/Favouriteless/StateObserver"
+    logoFile = "modopedia.png"
+    authors = "Favouriteless"
+    description = '''Observing blockstate changes over a large area without a performance hit.'''
+
+[[mixins]]
+    config="stateobserver.neoforge.mixins.json"
+
+[[dependencies.stateobserver]]
+    modId = "neoforge"
+    type="required" #mandatory
+    versionRange = "${neoforge_version_range}"
+    ordering = "NONE"
+    side = "BOTH"
+
+[[dependencies.stateobserver]]
+    modId = "minecraft"
+    type="required" #mandatory
+    versionRange = "${minecraft_version_range}"
+    ordering = "NONE"
+    side = "BOTH"

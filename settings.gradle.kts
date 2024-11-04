@@ -2,13 +2,6 @@ pluginManagement {
     repositories {
         gradlePluginPortal()
         maven {
-            name = "Forge"
-            url = uri("https://maven.minecraftforge.net/")
-            content {
-                includeGroupAndSubgroups("net.minecraftforge")
-            }
-        }
-        maven {
             name = "Fabric"
             url = uri("https://maven.fabricmc.net/")
             content {
@@ -21,6 +14,15 @@ pluginManagement {
             url = uri("https://maven.parchmentmc.org")
             content {
                 includeGroupAndSubgroups("org.parchmentmc")
+            }
+        }
+        maven {
+            name = "NeoForge"
+            url = uri("https://maven.neoforged.net/releases")
+            content {
+                includeGroupAndSubgroups("net.neoforged")
+                includeGroup("codechicken")
+                includeGroup("net.covers1624")
             }
         }
         maven {
@@ -41,4 +43,4 @@ rootProject.name = "StateObserver"
 
 include("common")
 include("fabric")
-include("forge")
+include("neoforge")

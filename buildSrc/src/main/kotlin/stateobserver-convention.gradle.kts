@@ -6,72 +6,67 @@ plugins {
 }
 
 java {
-    toolchain.languageVersion = JavaLanguageVersion.of(17)
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
 
     withSourcesJar()
     withJavadocJar()
 }
 
+idea {
+    module {
+        isDownloadSources = true
+        isDownloadJavadoc = true
+    }
+}
+
 val libs = project.versionCatalogs.find("libs")
 
-val mod_id: String by project
-val mod_name: String by project
-val author: String by project
-val license: String by project
-val mod_description: String by project
-val display_url: String by project
-
 val version = libs.get().findVersion("stateobserver").get()
-val minecraft_version = libs.get().findVersion("minecraft").get()
-val forge_version = libs.get().findVersion("forge").get()
-val forge_version_range = libs.get().findVersion("forge.range").get()
-val fml_version_range = libs.get().findVersion("forge.fml.range").get()
-val minecraft_version_range = libs.get().findVersion("minecraft.range").get()
-val fabric_version = libs.get().findVersion("fabric").get()
 
+val minecraftVersion = libs.get().findVersion("minecraft").get()
+val minecraftVersionRange = libs.get().findVersion("minecraft.range").get()
+val neoforgeVersion = libs.get().findVersion("neoforge").get()
+val neoforgeVersionRange = libs.get().findVersion("neoforge.range").get()
+val neoforgeLoaderRange = libs.get().findVersion("neoforge.loader.range").get()
+val fapiVersion = libs.get().findVersion("fabric.api").get()
+val fabricVersion = libs.get().findVersion("fabric").get()
 
 tasks.withType<Jar>().configureEach {
     from(rootProject.file("LICENSE")) {
-        rename { "${it}_${mod_name}" }
+        rename { "${it}_StateObserver" }
     }
 
     manifest {
         attributes(mapOf(
-                "Specification-Title"     to mod_name,
-                "Specification-Vendor"    to author,
-                "Specification-Version"   to version,
-                "Implementation-Title"    to mod_name,
-                "Implementation-Version"  to version,
-                "Implementation-Vendor"   to author,
-                "Built-On-Minecraft"      to minecraft_version
+            "Specification-Title"     to "StateObserver",
+            "Specification-Vendor"    to "Favouriteless",
+            "Specification-Version"   to version,
+            "Implementation-Title"    to "StateObserver",
+            "Implementation-Version"  to version,
+            "Implementation-Vendor"   to "Favouriteless",
+            "Built-On-Minecraft"      to minecraftVersion
         ))
     }
 }
 
 tasks.withType<JavaCompile>().configureEach {
     this.options.encoding = "UTF-8"
-    this.options.getRelease().set(17)
+    this.options.release.set(21)
 }
 
 tasks.withType<ProcessResources>().configureEach {
     val expandProps = mapOf(
-            "version" to version,
-            "group" to project.group, // Else we target the task's group.
-            "display_url" to display_url, // Else we target the task's group.
-            "minecraft_version" to minecraft_version,
-            "forge_version" to forge_version,
-            "fml_version_range" to fml_version_range,
-            "forge_version_range" to forge_version_range,
-            "minecraft_version_range" to minecraft_version_range,
-            "fabric_loader_version" to fabric_version,
-            "mod_name" to mod_name,
-            "author" to author,
-            "mod_id" to mod_id,
-            "license" to license,
-            "description" to mod_description
+        "version" to version,
+        "minecraft_version" to minecraftVersion,
+        "neoforge_version" to neoforgeVersion,
+        "neoforge_version_range" to neoforgeVersionRange,
+        "neoforge_loader_range" to neoforgeLoaderRange,
+        "minecraft_version_range" to minecraftVersionRange,
+        "fabric_api_version" to fapiVersion,
+        "fabric_loader_version" to fabricVersion
     )
 
-    filesMatching(listOf("pack.mcmeta", "fabric.mod.json", "META-INF/mods.toml", "*.mixins.json")) {
+    filesMatching(listOf("pack.mcmeta", "fabric.mod.json", "META-INF/neoforge.mods.toml", "*.mixins.json")) {
         expand(expandProps)
     }
 

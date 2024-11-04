@@ -1,33 +1,35 @@
 plugins {
     id("stateobserver-convention")
-    alias(libs.plugins.vanillagradle)
+    alias(libs.plugins.moddevgradle)
 }
 
-val mod_id: String by project
 version = libs.versions.stateobserver.get()
-val minecraft_version = libs.versions.minecraft.asProvider().get()
 
 base {
-    archivesName = "${mod_id}-common-${minecraft_version}"
+    archivesName = "stateobserver-common-${libs.versions.minecraft.asProvider().get()}"
 }
 
-minecraft {
-    version(minecraft_version)
-    //accessWideners(file("src/main/resources/${mod_id}.accesswidener"))
+neoForge {
+    neoFormVersion = libs.versions.neoform.get()
+
+//    accessTransformers.files.setFrom("src/main/resources/META-INF/accesstransformer.cfg")
+
+    parchment {
+        minecraftVersion = libs.versions.parchment.minecraft.get()
+        mappingsVersion = libs.versions.parchment.asProvider().get()
+    }
 }
 
 dependencies {
-    implementation( libs.jsr305 )
-    compileOnly( libs.mixin )
+    compileOnly(libs.mixin)
+    compileOnly(libs.mixinextras.common)
 }
 
 publishing {
-    publishing {
-        publications {
-            create<MavenPublication>(mod_id) {
-                from(components["java"])
-                artifactId = base.archivesName.get()
-            }
+    publications {
+        create<MavenPublication>("stateobserver") {
+            from(components["java"])
+            artifactId = base.archivesName.get()
         }
     }
 }

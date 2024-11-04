@@ -5,7 +5,6 @@
   "refmap": "stateobserver.refmap.json",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "LevelChunkMixin"
   ],
   "client": [
   ],

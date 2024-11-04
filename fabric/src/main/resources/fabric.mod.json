@@ -1,17 +1,17 @@
 {
     "schemaVersion": 1,
-    "id": "${mod_id}",
+    "id": "stateobserver",
     "version": "${version}",
-    "name": "${mod_name}",
-    "description": "${description}",
+    "name": "StateObserver",
+    "description": "Observing blockstate changes over a large area without a performance hit.",
     "authors": [
-        "${author}"
+        "Favouriteless"
     ],
     "contact": {
-        "homepage": "${display_url}"
+        "homepage": "https://github.com/Favouriteless/StateObserver"
     },
-    "license": "${license}",
-    "icon": "${mod_id}.png",
+    "license": "MIT",
+    "icon": "stateobserver.png",
     "environment": "*",
     "entrypoints": {
         "main": [
@@ -19,7 +19,8 @@
         ]
     },
     "mixins": [
-        "${mod_id}.mixins.json"
+        "stateobserver.mixins.json",
+        "stateobserver.fabric.mixins.json"
     ],
     "depends": {
         "fabricloader": ">=${fabric_loader_version}",

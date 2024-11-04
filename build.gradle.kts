@@ -8,4 +8,9 @@ plugins {
 
 subprojects {
 
+    repositories {
+        maven("https://maven.favouriteless.net/releases") { name = "Favouriteless Maven" }
+    }
+
 }
+

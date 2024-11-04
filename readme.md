@@ -29,5 +29,5 @@ dependencies {
 ```
 Lastly, add a `stateobserver_version` property to your `gradle.properties` file. The latest release versions for StateObserver can be found on [CurseForge](https://www.curseforge.com/minecraft/mc-mods/stateobserver) and [Modrinth](https://modrinth.com/mod/stateobserver).
 ```groovy
-stateobserver_version=1.4.1
+stateobserver_version=1.5.0
 ```
