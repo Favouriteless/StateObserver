@@ -99,7 +99,7 @@ modrinth {
     uploadFile.set(tasks.named<RemapJarTask>("remapJar"))
     changelog.set(rootProject.file("changelog.txt").readText(Charsets.UTF_8))
 
-    loaders.set(listOf("fabric, quilt"))
+    loaders.set(listOf("fabric"))
     gameVersions.set(listOf(mcVersion))
 
     dependencies {
@@ -116,7 +116,7 @@ tasks.register<TaskPublishCurseForge>("publishToCurseForge") {
 
     val mainFile = upload(701213, tasks.remapJar)
     mainFile.releaseType = "release"
-    mainFile.addModLoader("Fabric", "Quilt")
+    mainFile.addModLoader("Fabric")
     mainFile.addGameVersion(mcVersion)
     mainFile.addJavaVersion("Java 21")
     mainFile.changelog = rootProject.file("changelog.txt").readText(Charsets.UTF_8)
