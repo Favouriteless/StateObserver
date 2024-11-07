@@ -1,0 +1,1 @@
+- FIXED: Transitive dependency dragging extra versions of NeoForge into dev environments.
