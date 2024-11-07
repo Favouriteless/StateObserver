@@ -15,6 +15,9 @@ license = "MIT"
 [[mixins]]
     config="stateobserver.neoforge.mixins.json"
 
+[[mixins]]
+    config="stateobserver.mixins.json"
+
 [[dependencies.stateobserver]]
     modId = "neoforge"
     type="required" #mandatory
