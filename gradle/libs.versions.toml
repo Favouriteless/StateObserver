@@ -1,6 +1,6 @@
 [versions]
 # StateObserver
-    stateobserver = "1.5.2"
+    stateobserver = "1.5.3"
 
 # Common
     minecraft = "1.21.1"

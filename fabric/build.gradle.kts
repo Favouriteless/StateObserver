@@ -62,6 +62,10 @@ loom {
             runDir("runs/$name")
         }
     }
+
+    mixin {
+        defaultRefmapName.convention("stateobserver.refmap.json")
+    }
 }
 
 tasks.withType<JavaCompile>().configureEach {
