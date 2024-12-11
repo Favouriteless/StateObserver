@@ -1,6 +1,6 @@
 [versions]
 # StateObserver
-    stateobserver = "1.5.3"
+    stateobserver = "1.5.4"
 
 # Common
     minecraft = "1.21.1"
@@ -22,6 +22,7 @@
 # Dependencies
     mixin = "0.8.7"
     mixinextras = "0.3.5"
+    schoomp = "1.2.6"
 
 # Plugins
     plugin-mod-dev-gradle = "2.0.31-beta"
@@ -41,6 +42,9 @@
     fabric = { group = "net.fabricmc", name = "fabric-loader", version.ref = "fabric" }
     fabric-api = { group = "net.fabricmc.fabric-api", name = "fabric-api", version.ref = "fabric-api" }
     minecraft = { group = "com.mojang", name = "minecraft", version.ref = "minecraft" }
+
+# Misc
+    schoomp = { group = "com.diluv.schoomp", name = "Schoomp", version.ref = "schoomp" }
 
 [plugins]
 # Publishing

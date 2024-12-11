@@ -10,6 +10,7 @@ subprojects {
 
     repositories {
         maven("https://maven.favouriteless.net/releases") { name = "Favouriteless Maven" }
+        maven("https://maven.blamejared.com/") { name = "Jared's maven" }
     }
 
 }
