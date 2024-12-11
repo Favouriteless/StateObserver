@@ -16,7 +16,7 @@ public class StateChangeSetImpl implements StateChangeSet {
 	public void change(BlockPos pos, BlockState oldState, BlockState newState) {
 		for(int i = 0; i < changes.size(); i++) {
 			StateChange change = changes.get(i);
-			if(change.pos() == pos) {
+			if(change.pos().equals(pos)) {
 				changes.set(i, new StateChange(pos, change.oldState(), newState));
 				return;
 			}
