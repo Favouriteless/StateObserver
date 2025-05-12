@@ -18,7 +18,6 @@ public class StateObserverManagerImpl implements StateObserverManager {
 
 	private final Map<ChunkPos, Set<StateObserver>> observers = new HashMap<>();
 
-
 	public <T extends StateObserver> T addObserver(@NotNull T observer) {
 		getObservedChunks(observer).forEach(c -> observers.computeIfAbsent(c, k -> new HashSet<>()).add(observer));
 		observer.onInit();
@@ -33,6 +32,9 @@ public class StateObserverManagerImpl implements StateObserverManager {
 	@SuppressWarnings("unchecked") // This is an "unchecked" cast-- class is checked instead.
 	public <T extends StateObserver> T getObserver(@NotNull Level level, @NotNull BlockPos pos, @NotNull Class<T> clazz) {
 		ChunkPos chunkPos = new ChunkPos(SectionPos.blockToSectionCoord(pos.getX()), SectionPos.blockToSectionCoord(pos.getZ()));
+		if(!observers.containsKey(chunkPos))
+			return null;
+
 		for(StateObserver observer : observers.get(chunkPos)) {
 			if(observer.getClass() == clazz) {
 				if(observer.getLevel() == level && observer.getPos().equals(pos))
@@ -44,6 +46,9 @@ public class StateObserverManagerImpl implements StateObserverManager {
 
 	public void notifyChange(Level level, BlockPos pos, BlockState oldState, BlockState newState) {
 		ChunkPos chunkPos = new ChunkPos(SectionPos.blockToSectionCoord(pos.getX()), SectionPos.blockToSectionCoord(pos.getZ()));
+		if(!observers.containsKey(chunkPos))
+			return;
+
 		for(StateObserver observer : observers.get(chunkPos)) {
 			if(level == observer.getLevel() && observer.isWithinBounds(pos))
 				observer.getChangeSet().change(pos, oldState, newState);

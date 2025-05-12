@@ -1,1 +1,1 @@
-- CHANGED: Updated StateObserver data structure to make it more efficient with a large number of observers.
+- FIXED: Crashing issue. Oops.
