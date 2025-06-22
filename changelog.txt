@@ -1,1 +1,1 @@
-- FIXED: Crashing issue. Oops.
+- ADDED: Global state change listeners

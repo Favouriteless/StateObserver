@@ -25,14 +25,14 @@ public interface StateObserverManager {
      *
      * @return The {@link StateObserver} after it has been added.
      */
-    <T extends StateObserver> T addObserver(@NotNull T observer);
+    <T extends StateObserver> T addObserver(T observer);
 
     /**
      * Remove a {@link StateObserver} from tracking.
      *
      * @param observer The {@link StateObserver} to remove.
      */
-    void removeObserver(@NotNull StateObserver observer);
+    void removeObserver(StateObserver observer);
 
     /**
      * Get the {@link StateObserver} at a given level and position, provided it matches a class.
@@ -43,7 +43,8 @@ public interface StateObserverManager {
      *
      * @return A {@link StateObserver} of the given level, position and type, or null if none were found.
      */
-    @Nullable
-    <T extends StateObserver> T getObserver(@NotNull Level level, @NotNull BlockPos pos, @NotNull Class<T> clazz);
+    @Nullable <T extends StateObserver> T getObserver(Level level, BlockPos pos, Class<T> clazz);
+
+    void registerGlobalListener(GlobalStateListener listener);
 
 }
